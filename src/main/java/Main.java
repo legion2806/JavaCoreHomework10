@@ -13,6 +13,16 @@ import java.util.List;
 
 public class Main {
 
+    public Integer upvotes;
+
+    public Integer getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(Integer upvotes) {
+        this.upvotes = upvotes;
+    }
+
     public static final String REMOTE_SERVICE_URI = "https://jsonplaceholder.typicode.com/posts";
     public static final ObjectMapper mapper = new ObjectMapper();
 
@@ -32,13 +42,16 @@ public class Main {
         // отправка запроса
         CloseableHttpResponse response = httpClient.execute(request);
 
-        List<jsonType> posts = mapper
-                .readValue(response.getEntity().getContent(), new TypeReference<List<jsonType>>() {});
-
+        List<Post> posts = mapper.readValue(response.getEntity().getContent(), new TypeReference<List<Post>>() {});
         posts.forEach(System.out::println);
+
+        posts.stream().filter(value -> value.getUpvotes() != null && value.getUpvotes() > 0);
 
     }
 
 
 
 }
+
+
+

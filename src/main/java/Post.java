@@ -1,6 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class jsonType {
+public class Post {
 
 
     private final int userId;
@@ -8,7 +8,7 @@ public class jsonType {
     private final String title;
     private final String body;
 
-    public jsonType(
+    public Post(
             @JsonProperty("userId") int userId,
             @JsonProperty("id") int id,
             @JsonProperty("title") String title,
@@ -31,5 +31,15 @@ public class jsonType {
                 "\n  id=" + id +
                 "\n  title=" + title +
                 "\n  body=" + body;
+    }
+
+    public Integer upvotes;
+
+    public Integer getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(Integer upvotes) {
+        this.upvotes = upvotes;
     }
 }
